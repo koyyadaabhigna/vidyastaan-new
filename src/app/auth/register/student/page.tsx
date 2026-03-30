@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import { ArrowLeft, User, Mail, Lock, GraduationCap, Loader2 } from "lucide-react";
+import { ArrowLeft, User, Mail, Lock, GraduationCap, Loader2, Phone } from "lucide-react";
 import toast from "react-hot-toast";
 import { createUserProfile, updateStudentProfile } from "@/lib/db";
 
@@ -14,6 +14,9 @@ export default function StudentRegisterPage() {
     email: "",
     password: "",
     grade: "10",
+    studentPhone: "",
+    parentName: "",
+    parentPhone: "",
   });
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -32,7 +35,7 @@ export default function StudentRegisterPage() {
         name: formData.name,
         email: formData.email,
         role: "student",
-        phone: "", // Will be filled in onboarding or profile
+        phone: formData.studentPhone,
         language: "English", // Default
       });
 
@@ -44,6 +47,8 @@ export default function StudentRegisterPage() {
         streak: 0,
         badges: [],
         assignedVolunteerId: null,
+        parentName: formData.parentName,
+        parentPhone: formData.parentPhone,
       });
 
       toast.success("Account created! Welcome to Vidyastaan.");
@@ -144,6 +149,69 @@ export default function StudentRegisterPage() {
                   <option value="11">Grade 11 (Intermediate)</option>
                   <option value="12">Grade 12 (Intermediate)</option>
                 </select>
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="studentPhone" className="block text-sm font-medium text-foreground/70">
+                Your Mobile Number
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Phone className="h-5 w-5 text-foreground/40" aria-hidden="true" />
+                </div>
+                <input
+                  id="studentPhone"
+                  name="studentPhone"
+                  type="tel"
+                  required
+                  value={formData.studentPhone}
+                  onChange={handleChange}
+                  className="block w-full pl-10 pr-3 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm transition-all"
+                  placeholder="98765 43210"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="parentName" className="block text-sm font-medium text-foreground/70">
+                Parent/Guardian Name
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-foreground/40" aria-hidden="true" />
+                </div>
+                <input
+                  id="parentName"
+                  name="parentName"
+                  type="text"
+                  required
+                  value={formData.parentName}
+                  onChange={handleChange}
+                  className="block w-full pl-10 pr-3 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm transition-all"
+                  placeholder="Father/Mother/Guardian Name"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="parentPhone" className="block text-sm font-medium text-foreground/70">
+                Parent Mobile Number
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Phone className="h-5 w-5 text-foreground/40" aria-hidden="true" />
+                </div>
+                <input
+                  id="parentPhone"
+                  name="parentPhone"
+                  type="tel"
+                  required
+                  value={formData.parentPhone}
+                  onChange={handleChange}
+                  className="block w-full pl-10 pr-3 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm transition-all"
+                  placeholder="98765 43210"
+                />
               </div>
             </div>
 

@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 // Only initialize Firebase if the API key is present.
 // This prevents build errors on Vercel when env vars aren't set during SSR.
-const isConfigured = !!firebaseConfig.apiKey;
+const isConfigured = !!(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.authDomain);
 
 let app: FirebaseApp;
 let auth: Auth;

@@ -69,10 +69,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
+    if (!isConfigured) {
+      throw new Error("Firebase is not configured. Please add Firebase environment variables to .env.local");
+    }
     await signInWithEmailAndPassword(auth, email, password);
   };
 
   const register = async (email: string, password: string) => {
+    if (!isConfigured) {
+      throw new Error("Firebase is not configured. Please add Firebase environment variables to .env.local");
+    }
     return await createUserWithEmailAndPassword(auth, email, password).then(cred => cred.user);
   };
 
