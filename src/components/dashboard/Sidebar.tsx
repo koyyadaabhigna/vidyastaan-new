@@ -70,7 +70,7 @@ export default function Sidebar({ role }: { role: "student" | "volunteer" | "adm
           {/* Logo */}
           <div className="p-8">
             <Link href="/" className="text-2xl font-bold tracking-tight text-primary">
-              Vikalp
+              Vidyastaan
             </Link>
           </div>
 

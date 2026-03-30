@@ -29,7 +29,7 @@ export default function VolunteerImpactPage() {
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">My Impact Dashboard</h1>
-          <p className="text-foreground/50 mt-1 font-medium">Measuring the lives you've touched through Vikalp.</p>
+          <p className="text-foreground/50 mt-1 font-medium">Measuring the lives you've touched through Vidyastaan.</p>
         </div>
         <div className="flex gap-4">
            <button 
@@ -77,7 +77,7 @@ export default function VolunteerImpactPage() {
                <h2 className="text-base font-bold text-primary uppercase tracking-[0.3em] mb-4">Certificate of Impact</h2>
                <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-4">Aditya Verma</h3>
                <p className="text-foreground/50 max-w-lg mx-auto leading-relaxed font-medium italic mb-10">
-                  "In recognition of your exceptional commitment to education equality, having completed 24 mentorship sessions and hosted 5 workshops on the Vikalp platform."
+                  "In recognition of your exceptional commitment to education equality, having completed 24 mentorship sessions and hosted 5 workshops on the Vidyastaan platform."
                </p>
                
                <div className="grid grid-cols-3 gap-8 w-full max-w-md pt-8 border-t border-border mt-auto">

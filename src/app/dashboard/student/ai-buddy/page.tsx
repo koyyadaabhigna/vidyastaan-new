@@ -24,7 +24,7 @@ export default function AIStudyBuddyPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm your Vikalp AI Study Buddy. I can help you understand complex topics simply. What are we learning today? 😊",
+      text: "Hello! I'm your Vidyastaan AI Study Buddy. I can help you understand complex topics simply. What are we learning today? 😊",
       sender: "bot",
       timestamp: new Date(),
     }

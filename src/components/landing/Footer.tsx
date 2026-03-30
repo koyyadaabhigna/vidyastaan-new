@@ -9,9 +9,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand & Mission */}
           <div className="flex flex-col gap-6">
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Vikalp</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Vidyastaan</h2>
             <p className="text-background/70 leading-relaxed text-lg italic">
-              "Vikalp — a new possibility for every child."
+              "Vidyastaan — a new possibility for every child."
             </p>
             <div className="flex items-center gap-4 mt-4">
               <Link href="#" className="p-3 bg-white/5 rounded-full hover:bg-primary transition-colors">
@@ -57,11 +57,11 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 text-background/70 text-lg">
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary" />
-                <span>hello@vikalp.org</span>
+                <span>hello@Vidyastaan.org</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary" />
-                <span>+91 1800-VIKALP</span>
+                <span>+91 1800-Vidyastaan</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-5 h-5" />
@@ -72,7 +72,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 pt-10 border-t border-white/5 text-center text-background/40 text-sm">
-          <p>&copy; {new Date().getFullYear()} Vikalp Platform. All rights reserved. Created with ❤️ for rural education in India.</p>
+          <p>&copy; {new Date().getFullYear()} Vidyastaan Platform. All rights reserved. Created with ❤️ for rural education in India.</p>
         </div>
       </div>
     </footer>

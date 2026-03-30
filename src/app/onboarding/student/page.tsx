@@ -263,7 +263,7 @@ export default function StudentOnboardingPage() {
                             <div>
                                <p className="font-bold text-warning-foreground">No problem!</p>
                                <p className="text-sm text-foreground/60 mt-1">
-                                  You can access Vikalp by calling our helpline. We'll send the number to your mobile.
+                                  You can access Vidyastaan by calling our helpline. We'll send the number to your mobile.
                                </p>
                             </div>
                          </div>

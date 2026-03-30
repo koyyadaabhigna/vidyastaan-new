@@ -21,12 +21,16 @@ export default function Hero() {
             India's #1 Peer-to-Peer Learning Platform
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6 max-w-4xl leading-[1.1]">
-            Vikalp — <span className="text-primary italic">a new possibility</span> for every child
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground mb-3 max-w-4xl leading-[1.05]">
+            Vidyastaan
           </h1>
-          
+
+          <p className="text-xl md:text-2xl text-primary font-semibold italic mb-10 tracking-wide">
+            a new possibility for every child
+          </p>
+
           <p className="text-lg md:text-xl text-foreground/70 mb-10 max-w-2xl">
-            Vikalp connects underserved school students with passionate college volunteers for academic support and real-world skill development.
+            Vidyastaan connects underserved school students with passionate college volunteers for academic support and real-world skill development.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">

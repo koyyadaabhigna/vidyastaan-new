@@ -46,7 +46,7 @@ export default function StudentRegisterPage() {
         assignedVolunteerId: null,
       });
 
-      toast.success("Account created! Welcome to Vikalp.");
+      toast.success("Account created! Welcome to Vidyastaan.");
       router.push("/onboarding/student");
     } catch (error: any) {
       console.error("Registration error:", error);
@@ -179,7 +179,7 @@ export default function StudentRegisterPage() {
             </div>
             
             <p className="text-xs text-center text-foreground/40 leading-relaxed px-4">
-               By registering, you agree to Vikalp's Code of Conduct and Privacy Policy for student safety.
+               By registering, you agree to Vidyastaan's Code of Conduct and Privacy Policy for student safety.
             </p>
           </form>
         </div>

@@ -42,7 +42,7 @@ export default function LoginPage() {
           Back to Home
         </Link>
         <h2 className="text-center text-3xl font-extrabold text-foreground tracking-tight">
-          Login to Vikalp
+          Login to Vidyastaan
         </h2>
         <p className="mt-2 text-center text-sm text-foreground/60">
           Or{" "}

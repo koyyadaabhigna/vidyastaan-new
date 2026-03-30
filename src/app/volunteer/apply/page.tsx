@@ -1011,7 +1011,7 @@ function Step6({ formData, setFormData, isSubmitting }: any) {
             className="mt-1 w-5 h-5 rounded-md text-primary" 
           />
           <p className="text-sm text-foreground/60 leading-relaxed font-medium">
-             I agree to Vikalp's <button className="text-primary hover:underline">Code of Conduct</button> regarding student safety and professional behavior.
+             I agree to Vidyastaan's <button className="text-primary hover:underline">Code of Conduct</button> regarding student safety and professional behavior.
           </p>
         </div>
         <div className="flex items-start gap-3">

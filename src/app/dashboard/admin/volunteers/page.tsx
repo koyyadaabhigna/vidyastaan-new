@@ -67,7 +67,7 @@ export default function AdminVolunteersPage() {
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">Volunteer Management</h1>
-          <p className="text-foreground/50 mt-1 font-medium italic">"The life and blood of Vikalp."</p>
+          <p className="text-foreground/50 mt-1 font-medium italic">"The life and blood of Vidyastaan."</p>
         </div>
         <div className="flex gap-3">
            <div className="px-4 py-2 bg-primary/10 border border-primary/20 rounded-2xl flex items-center gap-2 text-primary font-bold text-sm">

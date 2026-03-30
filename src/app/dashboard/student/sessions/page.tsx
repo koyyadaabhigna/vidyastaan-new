@@ -179,7 +179,7 @@ export default function StudentSessionsPage() {
              </div>
              <h3 className="text-2xl font-bold mb-2">No {activeTab} sessions</h3>
              <p className="text-foreground/50 max-w-sm mb-8 font-medium leading-relaxed">
-                Connect with a mentor to start your learning journey with Vikalp.
+                Connect with a mentor to start your learning journey with Vidyastaan.
              </p>
              <button className="px-8 py-3 bg-primary text-white rounded-xl font-bold flex items-center gap-2">
                 Discover Mentors

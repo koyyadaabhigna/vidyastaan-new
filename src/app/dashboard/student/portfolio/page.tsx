@@ -44,7 +44,7 @@ export default function StudentPortfolioPage() {
   const earnedBadges = studentData?.badges || [];
   
   const MILESTONES = [
-    { id: "1", title: "Joined Vikalp", date: "Jan 2026", desc: "Started the journey to bridge the education gap." },
+    { id: "1", title: "Joined Vidyastaan", date: "Jan 2026", desc: "Started the journey to bridge the education gap." },
     ...(studentData?.sessionCount > 0 ? [{ 
       id: "2", 
       title: "First Session Completed", 

@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vikalp — a new possibility for every child",
-  description: "Vikalp is India's peer-to-peer learning and skill exchange platform connecting underserved school students with college volunteers.",
+  title: "Vidyastaan — a new possibility for every child",
+  description: "Vidyastaan is India's peer-to-peer learning and skill exchange platform connecting underserved school students with college volunteers.",
 };
 
 export default function RootLayout({

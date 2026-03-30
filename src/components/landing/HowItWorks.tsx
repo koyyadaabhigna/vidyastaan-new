@@ -3,7 +3,7 @@ import { UserPlus, Search, GraduationCap, ClipboardCheck, Award } from "lucide-r
 
 const studentSteps = [
   {
-    title: "Join Vikalp",
+    title: "Join Vidyastaan",
     desc: "Register in seconds with your grade and language preferences.",
     icon: <UserPlus className="w-8 h-8 text-primary" />,
   },

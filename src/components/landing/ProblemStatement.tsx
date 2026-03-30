@@ -25,7 +25,7 @@ export default function ProblemStatement() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
           <span className="text-danger font-bold uppercase tracking-widest text-sm bg-danger/10 px-4 py-2 rounded-full ring-1 ring-danger/20">The Challenge</span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-6 mb-4">Why Vikalp exists</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mt-6 mb-4">Why Vidyastaan exists</h2>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg leading-relaxed">
             The education gap in India is widening. We're on a mission to ensure every child gets the attention they deserve.
           </p>

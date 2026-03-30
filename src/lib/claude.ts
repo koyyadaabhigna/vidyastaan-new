@@ -1,5 +1,5 @@
 /**
- * Vikalp AI Helper
+ * Vidyastaan AI Helper
  * This module handles communication with Claude API for:
  * 1. AI Study Buddy (explanation of topics)
  * 2. Lesson Plan Generation (curriculum-aligned)

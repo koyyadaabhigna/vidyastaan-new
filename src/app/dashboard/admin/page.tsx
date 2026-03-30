@@ -54,7 +54,7 @@ export default function AdminDashboardHome() {
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">Admin Overview</h1>
-          <p className="text-foreground/50 mt-1 font-medium">Monitoring the pulse of Vikalp mentorship.</p>
+          <p className="text-foreground/50 mt-1 font-medium">Monitoring the pulse of Vidyastaan mentorship.</p>
         </div>
         <div className="flex gap-3">
            <button className="px-6 py-3 bg-white border border-border rounded-xl font-bold flex items-center gap-2 hover:bg-background transition-all">
