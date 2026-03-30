@@ -10,9 +10,9 @@ const stats = [
 
 export default function StatsBar() {
   return (
-    <section className="bg-primary py-12 lg:py-16">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+    <section className="relative -mt-12 mb-24 z-20">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="glass p-12 rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] flex flex-col md:flex-row items-center justify-around gap-12 border-white/60">
           {stats.map((stat, idx) => (
             <StatItem key={idx} {...stat} />
           ))}
@@ -45,13 +45,14 @@ function StatItem({ label, value, suffix }: { label: string; value: number; suff
   }, [value]);
 
   return (
-    <div className="flex flex-col items-center text-center">
-      <div className="text-4xl md:text-5xl font-bold text-white mb-2 tabular-nums">
+    <div className="flex flex-col items-center text-center group">
+      <div className="text-5xl md:text-6xl font-black text-primary mb-3 tabular-nums drop-shadow-sm transition-transform group-hover:scale-110">
         {count.toLocaleString()}{suffix}
       </div>
-      <div className="text-white/80 font-medium text-lg lg:text-xl uppercase tracking-wider">
+      <div className="text-foreground/50 font-bold text-sm md:text-base uppercase tracking-[0.2em] px-4">
         {label}
       </div>
+      <div className="w-12 h-1 bg-primary/20 rounded-full mt-4 group-hover:w-24 transition-all duration-500"></div>
     </div>
   );
 }
