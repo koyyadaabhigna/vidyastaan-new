@@ -84,16 +84,16 @@ async function handleExotelRequest(req: Request) {
             });
         }
         
-        const studentData = snap2.docs[0].data();
-        return new NextResponse(`Hello ${studentData.name}!`, { status: 200 });
+        // Match found in students collection!
+        console.log(`[FIREBASE] ✅ Found in Students. Approving Passthru.`);
+        return new NextResponse('OK', { status: 200, headers: { 'Content-Type': 'text/plain' } });
     }
 
     // If the snapshot has data, the user exists as an active student!
-    console.log(`[FIREBASE] ✅ Number ${cleanCallerId} MATCHED a Student Profile. Approving Passthru.`);
-    const studentData = querySnapshot.docs[0].data();
+    console.log(`[FIREBASE] ✅ Number ${cleanCallerId} MATCHED a User Profile. Approving Passthru.`);
     
-    // Returning standard HTTP 200 OK forces Exotel App Builder down the Green "Success" path
-    return new NextResponse(`Hello ${studentData.name || 'Student'}!`, { 
+    // Returning standard HTTP 200 OK with "OK" body forces Exotel App Builder down the Green "Success" path
+    return new NextResponse(`OK`, { 
        status: 200, 
        headers: { 'Content-Type': 'text/plain' } 
     });
