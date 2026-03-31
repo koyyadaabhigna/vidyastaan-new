@@ -48,48 +48,48 @@ async function handleExotelRequest(req: Request) {
     // Log internally for the session local demo
     recentCalls.push({ timestamp: new Date().toISOString(), callerId, exotelNumber, callSid });
 
-    // 2. Data Normalization
-    let searchPhone = callerId;
-    if (searchPhone !== "Unknown" && searchPhone.length >= 10) {
-       searchPhone = searchPhone.slice(-10); // Extract the last core 10 digits
-    }
+    // 2. Data Sanitization
+    // Exotel/Telecoms send weird formats (+91, spaces, 0 prefix). 
+    // We strip everything but pure numbers.
+    const cleanCallerId = callerId.replace(/\D/g, ''); 
+    const core10Digits = cleanCallerId.slice(-10);
 
     // 3. SECURE FIREBASE DATABASE CHECK
-    console.log(`[FIREBASE] Checking Database for registered number: ${searchPhone}...`);
+    console.log(`[FIREBASE] Checking Database for registered number: ${cleanCallerId}...`);
     
-    // Safety check for Vercel Environment Variables
-    if (process.env.NEXT_PUBLIC_FIREBASE_API_KEY === "your_api_key") {
-       console.error("[FIREBASE] ERROR: Vercel environment variables are NOT SET!");
-    }
-
     const usersRef = collection(db, COLLECTIONS.USERS);
-    // Check for the most common Indian formats: raw 10-digit, +91, and 0 prefix
-    const q = query(usersRef, where("phone", "in", [searchPhone, `+91${searchPhone}`, `0${searchPhone}`]));
+    // We check for: Raw 11-digit, Core 10-digit, and common Prefixes.
+    const searchTerms = Array.from(new Set([
+        cleanCallerId, 
+        core10Digits, 
+        `+91${core10Digits}`, 
+        `0${core10Digits}`
+    ]));
+
+    const q = query(usersRef, where("phone", "in", searchTerms));
     const querySnapshot = await getDocs(q);
 
     // 4. DYNAMIC EXOTEL RESPONSE BRANCHING!
     if (querySnapshot.empty) {
-        console.log(`[FIREBASE] ❌ Number ${searchPhone} not found in USERS. Checking STUDENTS...`);
-        // Fallback: Some systems store it in the 'students' collection directly
+        console.log(`[FIREBASE] ❌ Number ${cleanCallerId} not found in USERS. Checking STUDENTS...`);
         const studentsRef = collection(db, COLLECTIONS.STUDENTS);
-        const q2 = query(studentsRef, where("phone", "in", [searchPhone, `+91${searchPhone}`, `0${searchPhone}`]));
+        const q2 = query(studentsRef, where("phone", "in", searchTerms));
         const snap2 = await getDocs(q2);
         
         if (snap2.empty) {
-            console.log(`[FIREBASE] ❌ Number ${searchPhone} is definitively NOT REGISTERED.`);
+            console.log(`[FIREBASE] ❌ Number ${cleanCallerId} is definitively NOT REGISTERED.`);
             return new NextResponse('User Not Registered', { 
                 status: 404, 
-                headers: { 'Content-Type': 'text/plain', 'X-Debug-Phone': searchPhone } 
+                headers: { 'Content-Type': 'text/plain', 'X-Debug-Phone': cleanCallerId } 
             });
         }
         
-        // Match found in students collection!
         const studentData = snap2.docs[0].data();
         return new NextResponse(`Hello ${studentData.name}!`, { status: 200 });
     }
 
     // If the snapshot has data, the user exists as an active student!
-    console.log(`[FIREBASE] ✅ Number ${searchPhone} MATCHED a Student Profile. Approving Passthru.`);
+    console.log(`[FIREBASE] ✅ Number ${cleanCallerId} MATCHED a Student Profile. Approving Passthru.`);
     const studentData = querySnapshot.docs[0].data();
     
     // Returning standard HTTP 200 OK forces Exotel App Builder down the Green "Success" path

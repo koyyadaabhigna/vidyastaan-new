@@ -31,11 +31,14 @@ export default function StudentRegisterPage() {
       const user = await register(formData.email, formData.password);
       
       // 2. Create User Profile
+      const sanitizedPhone = formData.studentPhone.replace(/\D/g, '');
+      const sanitizedParentPhone = formData.parentPhone.replace(/\D/g, '');
+
       await createUserProfile(user.uid, {
         name: formData.name,
         email: formData.email,
         role: "student",
-        phone: formData.studentPhone,
+        phone: sanitizedPhone,
         language: "English", // Default
       });
 
@@ -48,7 +51,7 @@ export default function StudentRegisterPage() {
         badges: [],
         assignedVolunteerId: null,
         parentName: formData.parentName,
-        parentPhone: formData.parentPhone,
+        parentPhone: sanitizedParentPhone,
       });
 
       toast.success("Account created! Welcome to Vidyastaan.");
