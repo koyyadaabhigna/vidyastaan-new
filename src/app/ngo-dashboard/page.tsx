@@ -129,7 +129,6 @@ export default function NgoDashboardOverview() {
                      dataKey="size"
                      aspectRatio={4 / 3}
                      stroke="#fff"
-                     strokeWidth={2}
                      isAnimationActive={true}
                   >
                      <Tooltip 
