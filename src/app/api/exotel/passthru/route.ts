@@ -49,32 +49,43 @@ async function handleExotelRequest(req: Request) {
     recentCalls.push({ timestamp: new Date().toISOString(), callerId, exotelNumber, callSid });
 
     // 2. Data Normalization
-    // Exotel usually prefixes zero (09876543210) or country codes (+91...).
-    // Firebase registrations usually hold pure 10 digit strings.
     let searchPhone = callerId;
     if (searchPhone !== "Unknown" && searchPhone.length >= 10) {
-       searchPhone = searchPhone.slice(-10); // Extract the last core 10 digits accurately
+       searchPhone = searchPhone.slice(-10); // Extract the last core 10 digits
     }
 
     // 3. SECURE FIREBASE DATABASE CHECK
-    // Determine if the caller inherently exists inside the Edubridge Users collection
     console.log(`[FIREBASE] Checking Database for registered number: ${searchPhone}...`);
     
-    // In your Firebase architecture, the 'phone' property is securely stored in 'users', not 'students'!
+    // Safety check for Vercel Environment Variables
+    if (process.env.NEXT_PUBLIC_FIREBASE_API_KEY === "your_api_key") {
+       console.error("[FIREBASE] ERROR: Vercel environment variables are NOT SET!");
+    }
+
     const usersRef = collection(db, COLLECTIONS.USERS);
-    const q = query(usersRef, where("phone", "==", searchPhone));
+    // Check for the most common Indian formats: raw 10-digit, +91, and 0 prefix
+    const q = query(usersRef, where("phone", "in", [searchPhone, `+91${searchPhone}`, `0${searchPhone}`]));
     const querySnapshot = await getDocs(q);
 
     // 4. DYNAMIC EXOTEL RESPONSE BRANCHING!
-    // If the database returns completely 0 matches for that phone string:
     if (querySnapshot.empty) {
-        console.log(`[FIREBASE] ❌ Number ${searchPhone} is NOT REGISTERED! Crashing Passthru.`);
-        // Returning HTTP 404 forces Exotel App Builder to drop down the Red "Fail" path 
-        // immediately playing your "unregistered" voice recording!
-        return new NextResponse('User Not Registered', { 
-            status: 404, 
-            headers: { 'Content-Type': 'text/plain' } 
-        });
+        console.log(`[FIREBASE] ❌ Number ${searchPhone} not found in USERS. Checking STUDENTS...`);
+        // Fallback: Some systems store it in the 'students' collection directly
+        const studentsRef = collection(db, COLLECTIONS.STUDENTS);
+        const q2 = query(studentsRef, where("phone", "in", [searchPhone, `+91${searchPhone}`, `0${searchPhone}`]));
+        const snap2 = await getDocs(q2);
+        
+        if (snap2.empty) {
+            console.log(`[FIREBASE] ❌ Number ${searchPhone} is definitively NOT REGISTERED.`);
+            return new NextResponse('User Not Registered', { 
+                status: 404, 
+                headers: { 'Content-Type': 'text/plain', 'X-Debug-Phone': searchPhone } 
+            });
+        }
+        
+        // Match found in students collection!
+        const studentData = snap2.docs[0].data();
+        return new NextResponse(`Hello ${studentData.name}!`, { status: 200 });
     }
 
     // If the snapshot has data, the user exists as an active student!
