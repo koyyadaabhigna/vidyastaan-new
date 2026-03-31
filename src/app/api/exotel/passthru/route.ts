@@ -57,11 +57,12 @@ async function handleExotelRequest(req: Request) {
     }
 
     // 3. SECURE FIREBASE DATABASE CHECK
-    // Determine if the caller inherently exists inside the Edubridge Students collection
+    // Determine if the caller inherently exists inside the Edubridge Users collection
     console.log(`[FIREBASE] Checking Database for registered number: ${searchPhone}...`);
     
-    const studentsRef = collection(db, COLLECTIONS.STUDENTS);
-    const q = query(studentsRef, where("phone", "==", searchPhone));
+    // In your Firebase architecture, the 'phone' property is securely stored in 'users', not 'students'!
+    const usersRef = collection(db, COLLECTIONS.USERS);
+    const q = query(usersRef, where("phone", "==", searchPhone));
     const querySnapshot = await getDocs(q);
 
     // 4. DYNAMIC EXOTEL RESPONSE BRANCHING!
